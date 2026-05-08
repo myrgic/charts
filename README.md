@@ -69,15 +69,15 @@ Upgrade the node chart → upgrade all components together, tested as a unit.
 ## Architecture
 
 ```
-cogos-dev/charts          ← this repo (orchestration layer)
+myrgic/charts             ← this repo (orchestration layer)
   charts/cogos-node       ← umbrella chart
   charts/cogos-kernel     ← the daemon
   charts/cogos-mod3       ← voice server
   docker-compose.yml      ← local dev alternative
 
-cogos-dev/cogos           ← kernel source + Dockerfile
-cogos-dev/mod3            ← voice server source + Dockerfile
-cogos-dev/constellation   ← identity/trust source + Dockerfile
+myrgic/cogos              ← kernel source + Dockerfile
+myrgic/mod3               ← voice server source + Dockerfile
+myrgic/constellation      ← identity/trust source + Dockerfile
 ```
 
 Each component repo builds and publishes its own container image. This repo composes them into deployable units.
@@ -89,7 +89,7 @@ On macOS, the kernel can run in a container but Mod³ typically runs on bare met
 ```yaml
 services:
   cogos:
-    image: cogos-dev/cogos:latest    # containerized
+    image: ghcr.io/myrgic/cogos:latest    # containerized
     ports: ["6931:6931"]
 
   # mod3 runs on host, connects to kernel via network

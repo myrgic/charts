@@ -6,7 +6,7 @@
 # Kernel settings (always enabled)
 cogos-kernel:
   image:
-    repository: cogos-dev/cogos
+    repository: ghcr.io/myrgic/cogos
     tag: latest
   port: 5200
   workspace:
@@ -20,7 +20,7 @@ mod3:
 
 cogos-mod3:
   image:
-    repository: cogos-dev/mod3
+    repository: ghcr.io/myrgic/mod3
     tag: latest
   port: 5300
   kernel:

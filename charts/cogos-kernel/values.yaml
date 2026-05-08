@@ -1,7 +1,7 @@
 # CogOS Kernel — Default Values
 
 image:
-  repository: cogos-dev/cogos
+  repository: ghcr.io/myrgic/cogos
   tag: latest
   pullPolicy: IfNotPresent
 

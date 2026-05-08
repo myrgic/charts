@@ -9,7 +9,7 @@
 
 services:
   cogos:
-    image: cogos-dev/cogos:latest
+    image: ghcr.io/myrgic/cogos:latest
     build:
       context: ../cogos
       dockerfile: Dockerfile
@@ -32,7 +32,7 @@ services:
   # On Linux/headless, uncomment this and add device passthrough:
   #
   # mod3:
-  #   image: cogos-dev/mod3:latest
+  #   image: ghcr.io/myrgic/mod3:latest
   #   build:
   #     context: ../mod3
   #   ports:

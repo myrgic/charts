@@ -5,7 +5,7 @@ Thanks for your interest. This repo holds Helm charts and deployment manifests f
 ## Development setup
 
 ```sh
-git clone https://github.com/cogos-dev/charts.git
+git clone https://github.com/myrgic/charts.git
 cd charts
 helm version  # 3.13+
 ```
@@ -52,7 +52,7 @@ Each chart has its own `values.yaml`, `templates/`, and `Chart.yaml`.
 
 ## Reporting issues
 
-Use the org-level [Bug Report](https://github.com/cogos-dev/charts/issues/new?template=bug.yml) or [Feature Request](https://github.com/cogos-dev/charts/issues/new?template=feature.yml) forms. Please note your cluster version and Helm version.
+Use the org-level [Bug Report](https://github.com/myrgic/charts/issues/new?template=bug.yml) or [Feature Request](https://github.com/myrgic/charts/issues/new?template=feature.yml) forms. Please note your cluster version and Helm version.
 
 ## License
 

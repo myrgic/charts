@@ -1,7 +1,7 @@
 # Mod³ — Default Values
 
 image:
-  repository: cogos-dev/mod3
+  repository: ghcr.io/myrgic/mod3
   tag: latest
   pullPolicy: IfNotPresent
 
