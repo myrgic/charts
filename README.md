@@ -1,6 +1,6 @@
 # CogOS Charts
 
-> **Experimental** — Minimal Helm templates for Kubernetes deployment. Not production-tested. These charts define the deployment structure but have not been validated in a real cluster.
+> **Experimental**: Minimal Helm templates for Kubernetes deployment. Not production-tested. These charts define the deployment structure but have not been validated in a real cluster.
 >
 > No container images are published for these components yet. See "Container Images" below before running `helm install` or `docker compose up`.
 
@@ -49,7 +49,7 @@ helm install my-node charts/cogos-node --set mod3.enabled=true
 helm install my-node charts/cogos-node --set workspace.path=/data/my-workspace
 ```
 
-The node chart pins specific versions of each component. Upgrading the chart upgrades the whole node — like a Kubernetes release bundling component versions.
+The node chart pins specific versions of each component. Upgrading the chart upgrades the whole node, like a Kubernetes release bundling component versions.
 
 ### Component charts
 

@@ -1,7 +1,7 @@
 # CogOS Node — Default Values
 #
 # This umbrella chart deploys a complete CogOS node.
-# Enable/disable organelles as needed.
+# Enable/disable components as needed.
 
 # Kernel settings (always enabled)
 cogos-kernel:
