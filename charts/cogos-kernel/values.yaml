@@ -5,7 +5,7 @@ image:
   tag: latest
   pullPolicy: IfNotPresent
 
-port: 5200
+port: 6931
 
 workspace:
   # Host path or PVC path for the workspace

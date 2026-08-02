@@ -9,7 +9,7 @@ port: 5300
 
 kernel:
   # Kernel endpoint for event relay
-  endpoint: "http://cogos-kernel:5200"
+  endpoint: "http://cogos-kernel:6931"
 
 resources:
   requests:

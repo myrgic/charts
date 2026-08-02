@@ -1,8 +1,30 @@
 # CogOS Charts
 
 > **Experimental** — Minimal Helm templates for Kubernetes deployment. Not production-tested. These charts define the deployment structure but have not been validated in a real cluster.
+>
+> No container images are published for these components yet. See "Container Images" below before running `helm install` or `docker compose up`.
 
 Helm charts and deployment manifests for deploying CogOS nodes to Kubernetes.
+
+## Container Images
+
+No `ghcr.io/myrgic/*` images are published yet. The registry paths in these charts and in `docker-compose.yml` are placeholders, not a working pull target, and `helm install` or `docker compose up` against the defaults below will fail with an image-pull error.
+
+Until images are published, there are two ways to run these charts:
+
+- **Build from source and point the chart at your own image.** `myrgic/cogos` and `myrgic/constellation` ship Dockerfiles; `myrgic/mod3` does not yet.
+
+  ```sh
+  docker build -t your-registry/cogos:dev ../cogos
+  docker push your-registry/cogos:dev
+  helm install my-node charts/cogos-node \
+    --set cogos-kernel.image.repository=your-registry/cogos \
+    --set cogos-kernel.image.tag=dev
+  ```
+
+- **Use Docker Compose for local development**, which builds the kernel image from source directly (see below).
+
+Treat `image.repository` and `image.tag` in each chart's `values.yaml` as fields you fill in, not defaults that already resolve.
 
 ## Charts
 
@@ -43,12 +65,15 @@ helm install mod3 charts/cogos-mod3 --set kernel.endpoint=http://cogos-kernel:69
 
 ## Docker Compose (local development)
 
-For local development without Kubernetes:
+For local development without Kubernetes. The `cogos` service builds from a sibling `../cogos` checkout, so no image is pulled:
 
 ```sh
+docker compose build     # Build the kernel image from ../cogos
 docker compose up        # Start the full node
 docker compose up cogos  # Kernel only
 ```
+
+Mod³ has no Dockerfile yet (see the commented-out block in `docker-compose.yml`), so it isn't part of this containerized path yet. Run it on the host per the macOS note below.
 
 ## Version Pinning
 
@@ -75,12 +100,12 @@ myrgic/charts             ← this repo (orchestration layer)
   charts/cogos-mod3       ← voice server
   docker-compose.yml      ← local dev alternative
 
-myrgic/cogos              ← kernel source + Dockerfile
-myrgic/mod3               ← voice server source + Dockerfile
-myrgic/constellation      ← identity/trust source + Dockerfile
+myrgic/cogos              ← kernel source, has a Dockerfile
+myrgic/mod3               ← voice server source, no Dockerfile yet
+myrgic/constellation      ← identity/trust source, has a Dockerfile
 ```
 
-Each component repo builds and publishes its own container image. This repo composes them into deployable units.
+This repo composes those components into deployable units. None of them currently publish a container image (see "Container Images" above).
 
 ## Local macOS Note
 
@@ -89,7 +114,7 @@ On macOS, the kernel can run in a container but Mod³ typically runs on bare met
 ```yaml
 services:
   cogos:
-    image: ghcr.io/myrgic/cogos:latest    # containerized
+    image: ghcr.io/myrgic/cogos:latest    # built from ../cogos, not pulled
     ports: ["6931:6931"]
 
   # mod3 runs on host, connects to kernel via network
@@ -98,7 +123,7 @@ services:
 
 Port 6931 is the kernel default. Override via `kernel.yaml` or `--port` flag.
 
-For headless servers or Linux, everything can be fully containerized.
+For headless servers or Linux, the kernel can run fully containerized once you have an image (see "Container Images" above). Mod³ still needs to run on the host until it has a Dockerfile.
 
 ## License
 
