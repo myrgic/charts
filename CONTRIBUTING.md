@@ -1,6 +1,6 @@
 # Contributing to CogOS Charts
 
-Thanks for your interest. This repo holds Helm charts and deployment manifests for running CogOS on Kubernetes. The charts are **experimental** (see README) — PRs that move them toward production-ready are especially welcome.
+Thanks for your interest. This repo holds Helm charts and deployment manifests for running CogOS on Kubernetes. The charts are **experimental** (see README); PRs that move them toward production-ready are especially welcome.
 
 ## Development setup
 
@@ -48,7 +48,7 @@ Each chart has its own `values.yaml`, `templates/`, and `Chart.yaml`.
 2. Make your changes and bump the chart `version` in `Chart.yaml` if the contract changes
 3. Run `helm lint` + template dry-run
 4. Note the change in `CHANGELOG.md` (add one if missing) under the Unreleased section
-5. Open a pull request using the org PR template — include the commands you used to validate
+5. Open a pull request using the org PR template. Include the commands you used to validate
 
 ## Reporting issues
 
