@@ -14,7 +14,11 @@ Commit-message convention: [Conventional Commits](https://www.conventionalcommit
 
 ### Changed
 
+- README: documented that no `ghcr.io/myrgic/*` container images are published yet, and pointed `helm install` / `docker compose up` users at the build-from-source path instead.
+
 ### Fixed
+
+- Kernel port default (`charts/cogos-kernel/values.yaml`, `charts/cogos-node/values.yaml`, `charts/cogos-mod3/values.yaml`, `docker-compose.yml`) was still `5200` after the README examples were fixed to `6931`. Chart and compose defaults now match the kernel's actual default port.
 
 <!--
 Release template — copy this block, bump the version, date it, and move

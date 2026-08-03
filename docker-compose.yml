@@ -14,14 +14,14 @@ services:
       context: ../cogos
       dockerfile: Dockerfile
     ports:
-      - "${COGOS_PORT:-5200}:5200"
+      - "${COGOS_PORT:-6931}:6931"
     volumes:
       - "${COGOS_WORKSPACE:-./workspace}:/workspace"
     environment:
       - COG_LOG_DEBUG=${COG_LOG_DEBUG:-}
-    command: ["serve", "--workspace", "/workspace", "--port", "5200"]
+    command: ["serve", "--workspace", "/workspace", "--port", "6931"]
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5200/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:6931/health"]
       interval: 10s
       timeout: 3s
       retries: 3
@@ -29,7 +29,9 @@ services:
     restart: unless-stopped
 
   # Mod³ runs on host for macOS (needs audio device access).
-  # On Linux/headless, uncomment this and add device passthrough:
+  # On Linux/headless, uncomment this and add device passthrough.
+  # Note: myrgic/mod3 has no Dockerfile yet, so `build` below will fail
+  # until one exists or you supply your own `image`.
   #
   # mod3:
   #   image: ghcr.io/myrgic/mod3:latest
@@ -43,7 +45,7 @@ services:
   #     cogos:
   #       condition: service_healthy
   #   environment:
-  #     - COGOS_ENDPOINT=http://cogos:5200
+  #     - COGOS_ENDPOINT=http://cogos:6931
   #   restart: unless-stopped
 
 volumes:

@@ -8,7 +8,7 @@ cogos-kernel:
   image:
     repository: ghcr.io/myrgic/cogos
     tag: latest
-  port: 5200
+  port: 6931
   workspace:
     path: /workspace
     storageClass: ""
@@ -24,4 +24,4 @@ cogos-mod3:
     tag: latest
   port: 5300
   kernel:
-    endpoint: "http://{{ .Release.Name }}-cogos-kernel:5200"
+    endpoint: "http://{{ .Release.Name }}-cogos-kernel:6931"
