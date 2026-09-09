@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  helm-lint:
+    name: Helm lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/setup-helm@v4
+      - name: helm lint all charts
+        run: |
+          helm lint charts/cogos-kernel charts/cogos-mod3
+          helm dependency build charts/cogos-node
+          helm lint charts/cogos-node
+
+  public-release-gate:
+    uses: myrgic/.github/.github/workflows/public-release-gate.yml@main
